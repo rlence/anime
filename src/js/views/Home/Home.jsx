@@ -22,6 +22,7 @@ const Home = () => {
             const json = await res.json();
             console.log(json);
             actions.setTopAnime(json.data);
+            actions.setCopyTopAnime(json.data);
         }catch(err){
             console.log(err);
         }finally{

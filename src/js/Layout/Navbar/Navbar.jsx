@@ -5,17 +5,13 @@ import { Context } from "../../store/appContext"
 export const Navbar = () => {
   const {store, actions} = useContext(Context)
 
-  useEffect(() => {
-    actions.setCopyTopAnime(store.topAnime)
-  }, [store.topAnime])
-
   const handelChange = (e) => {
     const search = e.target.value;
     console.log(search)
     if(search === ""){
-      actions.setCopyTopAnime(store.topAnime);
+      actions.setTopAnime(store.copyTopAnime);
     }else{
-      const newListFilterTopAnime = store.topAnime.filter( anime =>  {
+      const newListFilterTopAnime = store.copyTopAnime.filter( anime =>  {
         const tilteAnime = anime.title.toLowerCase();
         if(tilteAnime.indexOf(search.toLowerCase()) >= 0){
           return anime;
