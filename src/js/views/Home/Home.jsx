@@ -47,8 +47,9 @@ const Home = () => {
                             id={anime.mal_id}
                             img = {anime.images.jpg.large_image_url} 
                             title = {anime.title}
-                            synopsis = {anime.synopsis}
-
+                            genres = {anime.genres}
+                            status = {anime.status}
+                            year = {anime.year}
                         />
                     )
                 }

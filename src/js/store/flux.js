@@ -2,7 +2,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
 			topAnime: [],
-			anime: {}
+			anime: {},
+			copyTopAnime: []
 		},
 		actions: {
 			setTopAnime: (topAnimeList) => {
@@ -10,7 +11,10 @@ const getState = ({ getStore, getActions, setStore }) => {
 			},
 			setAnime : (anime) => {
 				setStore({anime: anime});
-			}	
+			},
+			setCopyTopAnime: (copyTopAnime) => {
+				setStore({copyTopAnime: copyTopAnime})
+			}
 		}
 	};
 };

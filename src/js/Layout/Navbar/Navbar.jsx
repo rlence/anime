@@ -1,7 +1,31 @@
-import React from "react";
+import React, {useState, useContext, useEffect} from "react";
 import {  NavLink } from "react-router-dom";
+import { Context } from "../../store/appContext"
 
 export const Navbar = () => {
+  const {store, actions} = useContext(Context)
+
+  useEffect(() => {
+    actions.setCopyTopAnime(store.topAnime)
+  }, [store.topAnime])
+
+  const handelChange = (e) => {
+    const search = e.target.value;
+    console.log(search)
+    if(search === ""){
+      actions.setCopyTopAnime(store.topAnime);
+    }else{
+      const newListFilterTopAnime = store.topAnime.filter( anime =>  {
+        const tilteAnime = anime.title.toLowerCase();
+        if(tilteAnime.indexOf(search.toLowerCase()) >= 0){
+          return anime;
+        }
+      });
+      console.log({newListFilterTopAnime})
+      actions.setTopAnime(newListFilterTopAnime)
+    }
+  }
+  console.log(store.copyTopAnime)
 	return (
 		<nav className="navbar navbar-expand-lg navbar-light bg-light">
   <div className="container-fluid">
@@ -32,7 +56,7 @@ export const Navbar = () => {
           <a className="nav-link disabled">Disabled</a>
         </li>
       </ul>
-      <form className="d-flex">
+      <form className="d-flex" onChange={handelChange}>
         <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search" />
         <button className="btn btn-outline-success" type="submit">Search</button>
       </form>
